@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+        -webkit-text-fill-color: #000000 !important; /* Siyah yazı rengi */
+    }
+}
+
+@layer components{
+    .container{
+        @apply w-[94%] mx-auto
+    }
+
+    .input{
+        @apply border border-solid border-zinc-400 px-2.5 py-2 rounded-md ring-1 ring-zinc-300 placeholder:text-zinc-500 focus:outline-none focus:ring-primary
+    }
+
+    .error{
+        @apply block text-xs text-red-600 mt-1
+    }
+
+    .btn{
+        @apply px-4 py-2 bg-primary text-white rounded-md text-xl disabled:bg-opacity-25 hover:bg-green-800 transition-all
+    }
+}
