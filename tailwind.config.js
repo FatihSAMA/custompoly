@@ -14,6 +14,10 @@ export default {
       dropShadow : {
         "box" : "0 0 5px rgba(0, 0, 0, .2)",
       },
+      fontFamily : {
+        "aaux" : "Aaux Next, sans-serif",
+        "aileron" : "Aileron, sans-serif"
+      }
     },
   },
   plugins: [],

@@ -7,7 +7,7 @@ export default function Input({ name, type, error, touched, placeholder, label, 
         : "input"
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
             <label htmlFor={name} className={error && touched ? "text-red-600" : "text-primary"}>{label}</label>
             <Field
                 type={type}

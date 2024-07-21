@@ -22,7 +22,24 @@ const initialValues = {
     moneyImages : [],
     moneyImageError : "",
 
-    // Step 5
+    // Step 5 (Gameboard Customization)
+    fontFamily : "Aaux Next",
+
+    // Step 6
+    startText : "GO",
+    startText2 : "COLLECT $200 SALARY AS YOU PASS",
+    
+    // Step 7
+    brownText1 : "Text 1",
+    chestText : "TREASURE TEXT",
+    brownText2 : "Text 2",
+
+    // Step 8
+
+
+
+    // Gameboard Custimization End
+
 
 }
 
@@ -179,7 +196,7 @@ export default function GoldForm() {
 
                             {values.step === 3 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <h2 className="text-xl text-center font-bold">What color would you like the GameBoard to be?                                    </h2>
+                                    <h2 className="text-xl text-center font-bold">What color would you like the GameBoard to be?</h2>
                                     <div className="relative w-[300px] h-[300px] ">
                                         <span className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 opacity-40 text-zinc-400 text-xl">Preview</span>
                                         <img 
@@ -257,8 +274,136 @@ export default function GoldForm() {
                                 </div>
                             )}
 
-                            
+                            {values.step === 5 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6">
+                                    <h2 className="text-xl text-center font-bold">Game Board Customization</h2>
+                                    <div className="relative w-[300px] h-[300px] ">
+                                        <span className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 opacity-40 text-zinc-400 text-xl">Preview</span>
+                                        <img 
+                                            src={isDarkColor(values.boardColor) ? "white.png" : "black.png"} 
+                                            alt="Monopoly Game Board"
+                                            className="absolute top-0 left-0 w-full h-full z-10" 
+                                        />
+                                        <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundColor : values.boardColor }} />
+                                    </div>
+                                    
+                                </div>
+                            )}
 
+                            {values.step === 6 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6">
+                                    <div className={`relative w-[305px] h-[305px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl -rotate-45 font-bold z-10 text-black max-w-[220px] text-center break-words leading-none"
+                                        >
+                                            {values.startText}
+                                        </span>
+                                        <span 
+                                            className="absolute top-14 left-8 text-xl -rotate-45 font-medium z-10 text-black w-[150px] text-center break-words leading-none overflow-hidden h-[100px]  "
+                                        >
+                                            {values.startText2}
+                                        </span>
+                                        
+                                        <img src="Gameboard/start.png" alt="" className="w-[305px] h-[305px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="startText"
+                                            type="text"
+                                            error={errors.startText}
+                                            touched={touched.startText}
+                                            placeholder="Please Enter Text"
+                                            label="Text (e.g. Start, Lets go)"
+                                            value={values.startText}
+                                        />
+                                        <Input 
+                                            name="startText2"
+                                            type="text"
+                                            error={errors.startText2}
+                                            touched={touched.startText2}
+                                            placeholder="Please Enter Text"
+                                            label="Second Text"
+                                            value={values.startText2}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+
+
+                            {values.step === 7 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6">
+                                    <div className={`relative w-[330px] h-[195px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-14 right-3 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[90px] "
+                                        >
+                                            {values.brownText1}
+                                        </span>
+                                        <span 
+                                            className="absolute top-5 left-[120px] text-sm font-medium z-10 text-black text-center break-words leading-none overflow-hidden w-[90px] h-[58px]  "
+                                        >
+                                            {values.chestText}
+                                        </span>
+                                        <span 
+                                            className="absolute top-14 left-3 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[90px] "
+                                        >
+                                            {values.brownText2}
+                                        </span>
+                                        
+                                        <img src="Gameboard/brown.png" alt="" className="w-[330px] h-[195px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="brownText1"
+                                            type="text"
+                                            error={errors.brownText1}
+                                            touched={touched.brownText1}
+                                            placeholder="Please Enter Text"
+                                            label="Text 1"
+                                            value={values.brownText1}
+                                        />
+                                        <Input 
+                                            name="chestText"
+                                            type="text"
+                                            error={errors.chestText}
+                                            touched={touched.chestText}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Text"
+                                            value={values.chestText}
+                                        />
+                                        <Input 
+                                            name="brownText2"
+                                            type="text"
+                                            error={errors.brownText2}
+                                            touched={touched.brownText2}
+                                            placeholder="Please Enter Text"
+                                            label="Text 2"
+                                            value={values.brownText2}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+
+                            {/* Font Selection */}
+                            {values.step > 5 && values.step < 20 && (
+                                <div className="flex flex-col w-full mt-2">
+                                    <label htmlFor="fontFamily">
+                                        Select Font
+                                    </label>
+                                    <select 
+                                        name="fontFamily" 
+                                        id="fontFamily" 
+                                        value={values.fontFamily} 
+                                        onChange={(e) => setFieldValue("fontFamily", e.target.value)} 
+                                        className="p-2 border border-gray-300 rounded-md"  
+                                    >
+                                        <option value="Aaux Next">Aaux Next</option>
+                                        <option value="Aileron">Aileron</option>
+                                    </select>
+
+                                </div>
+                            )}
 
 
                             {/* Buttons */}
