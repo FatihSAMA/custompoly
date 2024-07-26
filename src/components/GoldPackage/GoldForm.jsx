@@ -29,6 +29,7 @@ const initialValues = {
     startText : "GO",
     startTextSize : "6xl",
     startText2 : "COLLECT $200 SALARY AS YOU PASS",
+    startText2Size : "xl",
 
     // Step 6
     brownText1 : "Text 1",
@@ -367,7 +368,12 @@ export default function GoldForm() {
                                             {values.startText}
                                         </span>
                                         <span 
-                                            className="absolute top-12 left-4 text-xl -rotate-45 font-medium z-10 text-black w-[150px] text-center break-words leading-none overflow-hidden h-[80px] "
+                                            className={classNames("absolute top-12 left-4 -rotate-45 font-medium z-10 text-black w-[150px] text-center break-words leading-none overflow-hidden h-[80px] ", {
+                                                "text-2xl" : values.startText2Size === "2xl",
+                                                "text-xl" : values.startText2Size === "xl",
+                                                "text-lg" : values.startText2Size === "lg",
+                                                "text-base" : values.startText2Size === "base",
+                                            })}
                                         >
                                             {values.startText2}
                                         </span>
@@ -413,6 +419,24 @@ export default function GoldForm() {
                                             label="Second Text"
                                             value={values.startText2}
                                         />
+                                        <div className="flex flex-col w-full mt-2">
+                                            <label htmlFor="startText2Size">
+                                                Font Size
+                                            </label>
+                                            <select 
+                                                name="startText2Size" 
+                                                id="startText2Size" 
+                                                value={values.startText2Size} 
+                                                onChange={(e) => setFieldValue("startText2Size", e.target.value)} 
+                                                className="p-2 border border-gray-300 rounded-md"  
+                                            >
+                                                <option value="2xl">Large</option>
+                                                <option value="xl">Medium</option>
+                                                <option value="lg">Small</option>
+                                                <option value="base">XS</option>
+                                            </select>
+
+                                        </div>
                                     </div>
                                 </div>
                             )}
