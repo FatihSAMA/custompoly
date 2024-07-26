@@ -1340,7 +1340,7 @@ export default function GoldForm() {
                             )}
 
                             {/* Font Selection */}
-                            {values.step > 5 && values.step < 22 && (
+                            {values.step > 4 && values.step < 22 && (
                                 <div className="flex flex-col w-full mt-2">
                                     <label htmlFor="fontFamily">
                                         Select Font
