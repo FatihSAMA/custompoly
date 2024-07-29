@@ -3,9 +3,11 @@ import goldValidationSchema from "./Validation"
 import Input from "../Input"
 import { useState } from "react"
 import classNames from "classnames"
+import GameBoardPreview from "../Gameboard/GameboardPreview"
+
 
 const initialValues = {
-    step: 1,
+    step: 1 ,
     laststep: 24,
 
     // Step 1
@@ -23,13 +25,12 @@ const initialValues = {
     
     // Step 4 (Gameboard Customization)
     boardColor : "#CCE3C7",
+    textColor : "#000",
 
     fontFamily : "Aaux Next",
     // Step 5 
     startText : "GO",
-    startTextSize : "6xl",
     startText2 : "COLLECT $200 SALARY AS YOU PASS",
-    startText2Size : "xl",
 
     // Step 6
     brownText1 : "Text 1",
@@ -73,7 +74,6 @@ const initialValues = {
     topLeftText1 : "FREE",
     topLeftText2 : "PARK",
     topLeftImage : "",
-    topLeftTextSize : "4xl",
 
     // Step 15
     redText1 : "Text 1",
@@ -94,7 +94,6 @@ const initialValues = {
     topRightText1 : "GO TO",
     topRightText2 : "JAIL",
     topRightImage : "",
-    topRightTextSize : "4xl",
 
     // Step 19
     greenText1 : "Text 1",
@@ -125,6 +124,7 @@ const isDarkColor = (color = "#CCE3C7") => {
 }
 
 export default function GoldForm() {
+    
     const [dragActive, setDragActive] = useState(false)
 
     const handleDrag = (event) => {
@@ -340,7 +340,10 @@ export default function GoldForm() {
                                             type="color"
                                             name="boardColor"
                                             value={values.boardColor}
-                                            onChange={(event) => setFieldValue("boardColor", event.target.value)}
+                                            onChange={(event) => {
+                                                setFieldValue("boardColor", event.target.value)
+                                                setFieldValue("textColor", isDarkColor(values.boardColor) ? "#fff" : "#000")
+                                            }}
                                             className="w-[50px] h-[50px] cursor-pointer "
                                         />
                                         <button type="button" onClick={() => setFieldValue("boardColor", "#CCE3C7")} className=" underline flex items-center justify-center gap-1 text-red-600 hover:text-red-700">
@@ -356,24 +359,14 @@ export default function GoldForm() {
                             {/* Start */}
                             {values.step === 5 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[305px] h-[305px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[305px] h-[305px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className={classNames("absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 font-bold z-10 text-black w-[220px] h-[120px] text-center break-words leading-none overflow-hidden flex items-center justify-center", {
-                                                "text-6xl" : values.startTextSize === "6xl",
-                                                "text-5xl" : values.startTextSize === "5xl",
-                                                "text-4xl" : values.startTextSize === "4xl",
-                                                "text-3xl" : values.startTextSize === "3xl",
-                                            })}
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 font-bold z-10 text-black w-[220px] h-[120px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-5xl"
                                         >
                                             {values.startText}
                                         </span>
                                         <span 
-                                            className={classNames("absolute top-12 left-4 -rotate-45 font-medium z-10 text-black w-[150px] text-center break-words leading-none overflow-hidden h-[80px] ", {
-                                                "text-2xl" : values.startText2Size === "2xl",
-                                                "text-xl" : values.startText2Size === "xl",
-                                                "text-lg" : values.startText2Size === "lg",
-                                                "text-base" : values.startText2Size === "base",
-                                            })}
+                                            className="absolute top-12 left-4 -rotate-45 font-medium z-10 text-black w-[150px] text-center break-words leading-none overflow-hidden h-[80px] text-xl"
                                         >
                                             {values.startText2}
                                         </span>
@@ -391,25 +384,6 @@ export default function GoldForm() {
                                             value={values.startText}
                                         />
 
-                                        <div className="flex flex-col w-full mt-2">
-                                            <label htmlFor="startTextSize">
-                                                Font Size
-                                            </label>
-                                            <select 
-                                                name="startTextSize" 
-                                                id="startTextSize" 
-                                                value={values.startTextSize} 
-                                                onChange={(e) => setFieldValue("startTextSize", e.target.value)} 
-                                                className="p-2 border border-gray-300 rounded-md"  
-                                            >
-                                                <option value="6xl">Large</option>
-                                                <option value="5xl">Medium</option>
-                                                <option value="4xl">Small</option>
-                                                <option value="3xl">XS</option>
-                                            </select>
-
-                                        </div>
-
                                         <Input 
                                             name="startText2"
                                             type="text"
@@ -419,24 +393,6 @@ export default function GoldForm() {
                                             label="Second Text"
                                             value={values.startText2}
                                         />
-                                        <div className="flex flex-col w-full mt-2">
-                                            <label htmlFor="startText2Size">
-                                                Font Size
-                                            </label>
-                                            <select 
-                                                name="startText2Size" 
-                                                id="startText2Size" 
-                                                value={values.startText2Size} 
-                                                onChange={(e) => setFieldValue("startText2Size", e.target.value)} 
-                                                className="p-2 border border-gray-300 rounded-md"  
-                                            >
-                                                <option value="2xl">Large</option>
-                                                <option value="xl">Medium</option>
-                                                <option value="lg">Small</option>
-                                                <option value="base">XS</option>
-                                            </select>
-
-                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -444,7 +400,7 @@ export default function GoldForm() {
                             {/* Brown and Chest */}
                             {values.step === 6 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[330px] h-[195px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[330px] h-[195px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-14 right-3 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[90px] "
                                         >
@@ -498,7 +454,7 @@ export default function GoldForm() {
                             {/* Empty 1 */}
                             {values.step === 7 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
-                                    <div className={`relative w-[170px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[170px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-6 left-1/2 -translate-x-1/2 text-base z-10  text-center break-words leading-none overflow-hidden h-[50px] w-[140px] "
                                         >
@@ -536,7 +492,7 @@ export default function GoldForm() {
                             {/* Station */}
                             {values.step === 8 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
-                                    <div className={`relative w-[168px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[168px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-6 left-1/2 -translate-x-1/2 text-xl z-10 text-center break-words leading-none overflow-hidden h-[85px] w-[140px] "
                                         >
@@ -562,7 +518,7 @@ export default function GoldForm() {
                             {/* Blue and Chance */}
                             {values.step === 9 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[330px] h-[171px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[330px] h-[171px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-14 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
                                         >
@@ -570,7 +526,7 @@ export default function GoldForm() {
                                         </span>
 
                                         <span 
-                                            className="absolute top-5 right-[89px] text-sm z-10 text-center break-words leading-none overflow-hidden h-[30px] w-[70px]"
+                                            className="absolute top-6 right-[89px] text-sm z-10 text-center break-words leading-none overflow-hidden h-[30px] w-[70px]"
                                         >
                                             {values.chanceText}
                                         </span>
@@ -633,7 +589,7 @@ export default function GoldForm() {
                             {/* Left Corner */}
                             {values.step === 10 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[292px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[292px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-10 left-[72px] rotate-[135deg] font-medium z-10 w-[100px] h-[20px] text-center break-words leading-none overflow-hidden text-xl"
                                         >
@@ -699,9 +655,9 @@ export default function GoldForm() {
                             {/* Pink and Empty 2 */}
                             {values.step === 11 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[327px] h-[146px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[327px] h-[146px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className="absolute top-14 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
+                                            className="absolute top-11 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
                                         >
                                             {values.pinkText1}
                                         </span>
@@ -711,16 +667,16 @@ export default function GoldForm() {
                                         >
                                             {values.empty2Text}
                                         </span>
-                                        <img src={values.empty2Image ? URL.createObjectURL(values.empty2Image) : "/Gameboard/imageIcon.png"} className="absolute top-[52px] right-[86px] w-[70px] h-[64px] " />
+                                        <img src={values.empty2Image ? URL.createObjectURL(values.empty2Image) : "/Gameboard/imageIcon.png"} className="absolute top-[48px] right-[86px] w-[70px] h-[64px] " />
 
                                         <span 
-                                            className="absolute top-14 left-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
+                                            className="absolute top-11 left-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
                                         >
                                             {values.pinkText2}
                                         </span>
 
                                         <span 
-                                            className="absolute top-14 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
+                                            className="absolute top-11 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
                                         >
                                             {values.pinkText3}
                                         </span>
@@ -781,7 +737,7 @@ export default function GoldForm() {
                             {/* Station 2 */}
                             {values.step === 12 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
-                                    <div className={`relative w-[168px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[168px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-6 left-1/2 -translate-x-1/2 text-xl z-10 text-center break-words leading-none overflow-hidden h-[85px] w-[140px] "
                                         >
@@ -807,9 +763,9 @@ export default function GoldForm() {
                             {/* Orange and Chest */}
                             {values.step === 13 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[329px] h-[146px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[329px] h-[146px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className="absolute top-14 right-2 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px] "
+                                            className="absolute top-11 right-2 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px] "
                                         >
                                             {values.orangeText1}
                                         </span>
@@ -819,12 +775,12 @@ export default function GoldForm() {
                                             {values.chestText}
                                         </span>
                                         <span 
-                                            className="absolute top-14 left-[88px] text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
+                                            className="absolute top-11 left-[88px] text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
                                         >
                                             {values.orangeText2}
                                         </span>
                                         <span 
-                                            className="absolute top-14 left-1.5 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
+                                            className="absolute top-11 left-1.5 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
                                         >
                                             {values.orangeText3}
                                         </span>
@@ -866,15 +822,9 @@ export default function GoldForm() {
                             {/* Top Left Corner */}
                             {values.step === 14 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[305px] h-[305px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[305px] h-[305px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className={classNames("absolute top-10 -left-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center", {
-                                                "text-5xl" : values.topLeftTextSize === "5xl",
-                                                "text-4xl" : values.topLeftTextSize === "4xl",
-                                                "text-3xl" : values.topLeftTextSize === "3xl",
-                                                "text-2xl" : values.topLeftTextSize === "2xl",
-                                                "text-xl" : values.topLeftTextSize === "xl",
-                                            })}
+                                            className="absolute top-10 -left-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-4xl"
                                         >
                                             {values.topLeftText1}
                                         </span>
@@ -882,13 +832,7 @@ export default function GoldForm() {
                                         <img src={values.topLeftImage ? URL.createObjectURL(values.topLeftImage) : "/Gameboard/imageIcon.png"} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[180px] object-contain -rotate-45 " />
 
                                         <span 
-                                            className={classNames("absolute bottom-10 -right-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center", {
-                                                "text-5xl" : values.topLeftTextSize === "5xl",
-                                                "text-4xl" : values.topLeftTextSize === "4xl",
-                                                "text-3xl" : values.topLeftTextSize === "3xl",
-                                                "text-2xl" : values.topLeftTextSize === "2xl",
-                                                "text-xl" : values.topLeftTextSize === "xl",
-                                            })}
+                                            className="absolute bottom-10 -right-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-4xl"
                                         >
                                             {values.topLeftText2}
                                         </span>
@@ -905,25 +849,6 @@ export default function GoldForm() {
                                             label="Text 1"
                                             value={values.topLeftText1}
                                         />
-
-                                        <div className="flex flex-col w-full mt-2">
-                                            <label htmlFor="topLeftTextSize">
-                                                Font Size
-                                            </label>
-                                            <select 
-                                                name="topLeftTextSize" 
-                                                id="topLeftTextSize" 
-                                                value={values.topLeftTextSize} 
-                                                onChange={(e) => setFieldValue("topLeftTextSize", e.target.value)} 
-                                                className="p-2 border border-gray-300 rounded-md"  
-                                            >
-                                                <option value="5xl">Large</option>
-                                                <option value="4xl">Medium</option>
-                                                <option value="3xl">Small</option>
-                                                <option value="2xl">XS</option>
-                                                <option value="xl">XXS</option>
-                                            </select>
-                                        </div>
 
                                         <label htmlFor="topLeftImage">
                                             Upload Image
@@ -952,7 +877,7 @@ export default function GoldForm() {
                             {/* Red and Chance */}
                             {values.step === 15 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[330px] h-[171px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[330px] h-[171px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-14 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
                                         >
@@ -960,7 +885,7 @@ export default function GoldForm() {
                                         </span>
 
                                         <span 
-                                            className="absolute top-5 right-[89px] text-sm z-10 text-center break-words leading-none overflow-hidden h-[30px] w-[70px]"
+                                            className="absolute top-[22px] right-[89px] text-sm z-10 text-center break-words leading-none overflow-hidden h-[30px] w-[70px]"
                                         >
                                             {values.chanceText}
                                         </span>
@@ -1014,7 +939,7 @@ export default function GoldForm() {
                             {/* Station 3 */}
                             {values.step === 16 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
-                                    <div className={`relative w-[168px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[168px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-6 left-1/2 -translate-x-1/2 text-xl z-10 text-center break-words leading-none overflow-hidden h-[85px] w-[140px] "
                                         >
@@ -1040,9 +965,9 @@ export default function GoldForm() {
                             {/* Yellow and Empty 3 */}
                             {values.step === 17 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[328px] h-[146px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[328px] h-[146px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className="absolute top-14 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
+                                            className="absolute top-11 right-2 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px] "
                                         >
                                             {values.yellowText1}
                                         </span>
@@ -1052,16 +977,16 @@ export default function GoldForm() {
                                         >
                                             {values.empty3Text}
                                         </span>
-                                        <img src={values.empty3Image ? URL.createObjectURL(values.empty3Image) : "/Gameboard/imageIcon.png"} className="absolute top-[52px] left-[88px] w-[70px] h-[64px] " />
+                                        <img src={values.empty3Image ? URL.createObjectURL(values.empty3Image) : "/Gameboard/imageIcon.png"} className="absolute top-[48px] left-[88px] w-[70px] h-[64px] " />
 
                                         <span 
-                                            className="absolute top-14 right-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
+                                            className="absolute top-11 right-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
                                         >
                                             {values.yellowText2}
                                         </span>
 
                                         <span 
-                                            className="absolute top-14 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
+                                            className="absolute top-11 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
                                         >
                                             {values.yellowText3}
                                         </span>
@@ -1122,15 +1047,9 @@ export default function GoldForm() {
                             {/* Top Right Corner */}
                             {values.step === 18 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[305px] h-[305px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[305px] h-[305px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className={classNames("absolute top-10 -left-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center", {
-                                                "text-5xl" : values.topRightTextSize === "5xl",
-                                                "text-4xl" : values.topRightTextSize === "4xl",
-                                                "text-3xl" : values.topRightTextSize === "3xl",
-                                                "text-2xl" : values.topRightTextSize === "2xl",
-                                                "text-xl" : values.topRightTextSize === "xl",
-                                            })}
+                                            className="absolute top-10 -left-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-4xl"
                                         >
                                             {values.topRightText1}
                                         </span>
@@ -1138,13 +1057,7 @@ export default function GoldForm() {
                                         <img src={values.topRightImage ? URL.createObjectURL(values.topRightImage) : "/Gameboard/imageIcon.png"} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[180px] object-contain -rotate-45 " />
 
                                         <span 
-                                            className={classNames("absolute bottom-10 -right-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center", {
-                                                "text-5xl" : values.topRightTextSize === "5xl",
-                                                "text-4xl" : values.topRightTextSize === "4xl",
-                                                "text-3xl" : values.topRightTextSize === "3xl",
-                                                "text-2xl" : values.topRightTextSize === "2xl",
-                                                "text-xl" : values.topRightTextSize === "xl",
-                                            })}
+                                            className="absolute bottom-10 -right-3 -rotate-45 font-bold z-10 text-black w-[150px] h-[50px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-4xl"
                                         >
                                             {values.topRightText2}
                                         </span>
@@ -1161,25 +1074,6 @@ export default function GoldForm() {
                                             label="Text 1"
                                             value={values.topRightText1}
                                         />
-
-                                        <div className="flex flex-col w-full mt-2">
-                                            <label htmlFor="topLeftTextSize">
-                                                Font Size
-                                            </label>
-                                            <select 
-                                                name="topRightTextSize" 
-                                                id="topRightTextSize" 
-                                                value={values.topRightTextSize} 
-                                                onChange={(e) => setFieldValue("topRightTextSize", e.target.value)} 
-                                                className="p-2 border border-gray-300 rounded-md"  
-                                            >
-                                                <option value="5xl">Large</option>
-                                                <option value="4xl">Medium</option>
-                                                <option value="3xl">Small</option>
-                                                <option value="2xl">XS</option>
-                                                <option value="xl">XXS</option>
-                                            </select>
-                                        </div>
 
                                         <label htmlFor="topRightImage">
                                             Upload Image
@@ -1210,12 +1104,12 @@ export default function GoldForm() {
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
                                     <div className={`relative w-[329px] h-[146px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className="absolute top-14 right-2 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px] "
+                                            className="absolute top-11 right-2 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px] "
                                         >
                                             {values.greenText1}
                                         </span>
                                         <span 
-                                            className="absolute top-14 right-[90px] text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
+                                            className="absolute top-11 right-[90px] text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
                                         >
                                             {values.greenText2}
                                         </span>
@@ -1225,7 +1119,7 @@ export default function GoldForm() {
                                             {values.chestText}
                                         </span>
                                         <span 
-                                            className="absolute top-14 left-1.5 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
+                                            className="absolute top-11 left-1.5 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px]"
                                         >
                                             {values.greenText3}
                                         </span>
@@ -1267,7 +1161,7 @@ export default function GoldForm() {
                             {/* Station 4 */}
                             {values.step === 20 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
-                                    <div className={`relative w-[168px] h-[293px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[168px] h-[293px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-6 left-1/2 -translate-x-1/2 text-xl z-10 text-center break-words leading-none overflow-hidden h-[85px] w-[140px] "
                                         >
@@ -1293,7 +1187,7 @@ export default function GoldForm() {
                             {/* Dark Blue and Empty 4 and Chance */}
                             {values.step === 21 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[328px] h-[146px] text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[328px] h-[146px] !uppercase text-black ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-3 right-2 text-sm z-10  text-center break-words leading-none overflow-hidden h-[24px] w-[70px] "
                                         >
@@ -1301,7 +1195,7 @@ export default function GoldForm() {
                                         </span>
 
                                         <span 
-                                            className="absolute top-14 right-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
+                                            className="absolute top-11 right-[88px] text-sm font-medium z-10 text-center break-words leading-none overflow-hidden w-[70px] h-[55px]"
                                         >
                                             {values.darkBlueText1}
                                         </span>
@@ -1311,10 +1205,10 @@ export default function GoldForm() {
                                         >
                                             {values.empty4Text}
                                         </span>
-                                        <img src={values.empty4Image ? URL.createObjectURL(values.empty4Image) : "/Gameboard/imageIcon.png"} className="absolute top-[52px] left-[88px] w-[70px] h-[64px] " />
+                                        <img src={values.empty4Image ? URL.createObjectURL(values.empty4Image) : "/Gameboard/imageIcon.png"} className="absolute top-[48px] left-[88px] w-[70px] h-[64px] " />
 
                                         <span 
-                                            className="absolute top-14 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
+                                            className="absolute top-11 left-1.5 text-sm z-10 text-center break-words leading-none overflow-hidden h-[55px] w-[70px]"
                                         >
                                             {values.darkBlueText2}
                                         </span>
@@ -1382,6 +1276,14 @@ export default function GoldForm() {
 
                                 </div>
                             )}
+
+                            {/* Gameboard Preview */}
+                            {values.step === 22 && (
+                                <>
+                                    <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} />
+                                </>
+                            )}
+
 
                             {/* Gameboard End */}
 
