@@ -4,7 +4,7 @@ export default function GameBoardPreview({ values, image }) {
   
     const images = [
         {
-            src : URL.createObjectURL(values.empty1Image),
+            src : values.empty1Image !== "" ? URL.createObjectURL(values.empty1Image) : "",
             x : 3120,
             y : 5125,
             width : 350,
@@ -12,7 +12,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 0 
         },
         {
-            src : URL.createObjectURL(values.leftCornerImage),
+            src : values.leftCornerImage !== "" ? URL.createObjectURL(values.leftCornerImage) : "",
             x : 300,
             y : 4995,
             width : 380,
@@ -20,7 +20,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 45  
         },
         {
-            src : URL.createObjectURL(values.empty2Image),
+            src : values.empty2Image !== "" ? URL.createObjectURL(values.empty2Image) : "",
             x : 220,
             y : 4020,
             width : 350,
@@ -28,7 +28,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 90 
         },
         {
-            src : URL.createObjectURL(values.topLeftImage),
+            src : values.topLeftImage !== "" ? URL.createObjectURL(values.topLeftImage) : "",
             x : 200,
             y : 200,
             width : 450,
@@ -36,7 +36,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 135 
         },
         {
-            src : URL.createObjectURL(values.empty3Image),
+            src : values.empty3Image !== "" ? URL.createObjectURL(values.empty3Image) : "",
             x : 4025,
             y : 220,
             width : 350,
@@ -44,7 +44,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 180 
         },
         {
-            src : URL.createObjectURL(values.topRightImage),
+            src : values.topRightImage !== "" ? URL.createObjectURL(values.topRightImage) : "",
             x : 5000,
             y : 200,
             width : 450,
@@ -52,7 +52,7 @@ export default function GameBoardPreview({ values, image }) {
             rotation : 225 
         },
         {
-            src : URL.createObjectURL(values.empty4Image),
+            src : values.empty4Image !== "" ? URL.createObjectURL(values.empty4Image) : "",
             x : 5120,
             y : 4020,
             width : 350,
