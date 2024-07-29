@@ -361,7 +361,7 @@ export default function GoldForm() {
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
                                     <div className={`relative w-[305px] h-[305px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
-                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 font-bold z-10 text-black w-[220px] h-[120px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-5xl"
+                                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-45 font-bold z-10 text-black w-[220px] h-[120px] text-center break-words leading-none overflow-hidden flex items-center justify-center text-6xl"
                                         >
                                             {values.startText}
                                         </span>
@@ -1102,7 +1102,7 @@ export default function GoldForm() {
                             {/* Green and Chest */}
                             {values.step === 19 && (
                                 <div className="flex flex-col items-center h-full justify-evenly gap-6">
-                                    <div className={`relative w-[329px] h-[146px] ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
+                                    <div className={`relative w-[329px] h-[146px] !uppercase ${values.fontFamily === "Aaux Next" ? "font-aaux" : "font-aileron"}`}>
                                         <span 
                                             className="absolute top-11 right-2 text-base z-10 text-black text-center break-words leading-none overflow-hidden h-[50px] w-[70px] "
                                         >

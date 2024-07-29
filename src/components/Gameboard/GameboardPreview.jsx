@@ -64,22 +64,22 @@ export default function GameBoardPreview({ values, image }) {
     const texts = [
         {
             text : values.startText, 
-            fontSize : 100,
+            fontSize : 140,
             fontWeight : "900",
             x : 5250,
-            y : 5250,
+            y : 5220,
             rotation : -45,
             maxWidth : 450,
             isCenter : true
         },
         {
             text : values.startText2, 
-            fontSize : 50,
+            fontSize : 55,
             fontWeight : "600",
-            x : 5000,
-            y : 5000,
+            x : 5025,
+            y : 5025,
             rotation : -45,
-            maxWidth : 330,
+            maxWidth : 420,
             isCenter : false
         },
 
