@@ -2,13 +2,14 @@ import { Form, Formik } from "formik"
 import goldValidationSchema from "./Validation"
 import Input from "../Input"
 import { useState } from "react"
-import classNames from "classnames"
 import GameBoardPreview from "../Gameboard/GameboardPreview"
+import PlayCard from "../Cards/PlayCards"
+import PlaceCards1 from "../Cards/PlaceCards1"
 
 
 const initialValues = {
-    step: 1 ,
-    laststep: 24,
+    step: 1,
+    laststep: 46,
 
     // Step 1
     email: "",
@@ -109,7 +110,44 @@ const initialValues = {
     empty4Image : "",
     darkBlueText2 : "Text 2",
 
+    // Step 22
+    // Gameboard Preview
+
     // Gameboard Customization End
+
+    // Playing Cards Start
+    fontFamily2 : "Kabel",
+
+    // Chance Cards
+    chance1 : "text here",
+    chance2 : "text here",
+    chance3 : "text here",
+    chance4 : "text here",
+    chance5 : "text here",
+    chance6 : "text here",
+    chance7 : "text here",
+    chance8 : "text here",
+    chance9 : "text here",
+    chance10 : "text here",
+    chance11 : "text here",
+    chance12 : "text here",
+
+    // Chest Cards
+    chest1 : "text here",
+    chest2 : "text here",
+    chest3 : "text here",
+    chest4 : "text here",
+    chest5 : "text here",
+    chest6 : "text here",
+    chest7 : "text here",
+    chest8 : "text here",
+    chest9 : "text here",
+    chest10 : "text here",
+    chest11 : "text here",
+    chest12 : "text here",
+
+    // Playing Cards End
+
 
 
 }
@@ -1257,6 +1295,598 @@ export default function GoldForm() {
                                 </div>
                             )}
 
+                            {/* Gameboard Preview */}
+                            {values.step === 22 && (
+                                <>
+                                    <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} />
+                                </>
+                            )}
+
+                            {/* Gameboard End */}
+
+                            {/* Chance Cards Start */}
+                            {values.step === 23 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance1}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance1"
+                                            type="text"
+                                            error={errors.chance1}
+                                            touched={touched.chance1}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 1"
+                                            value={values.chance1}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 24 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance2}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance2"
+                                            type="text"
+                                            error={errors.chance2}
+                                            touched={touched.chance2}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 2"
+                                            value={values.chance2}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 25 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance3}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance3"
+                                            type="text"
+                                            error={errors.chance3}
+                                            touched={touched.chance3}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 3"
+                                            value={values.chance3}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 26 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance4}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance4"
+                                            type="text"
+                                            error={errors.chance4}
+                                            touched={touched.chance4}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 4"
+                                            value={values.chance4}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 27 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance5}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance5"
+                                            type="text"
+                                            error={errors.chance5}
+                                            touched={touched.chance5}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 5"
+                                            value={values.chance5}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 28 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance6}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance6"
+                                            type="text"
+                                            error={errors.chance6}
+                                            touched={touched.chance6}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 6"
+                                            value={values.chance6}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 29 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance7}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance7"
+                                            type="text"
+                                            error={errors.chance7}
+                                            touched={touched.chance7}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 7"
+                                            value={values.chance7}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 30 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance8}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance8"
+                                            type="text"
+                                            error={errors.chance8}
+                                            touched={touched.chance2}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 8"
+                                            value={values.chance8}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 31 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance9}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance9"
+                                            type="text"
+                                            error={errors.chance9}
+                                            touched={touched.chance9}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 9"
+                                            value={values.chance9}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 32 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance10}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance10"
+                                            type="text"
+                                            error={errors.chance10}
+                                            touched={touched.chance10}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 10"
+                                            value={values.chance10}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 33 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance11}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance11"
+                                            type="text"
+                                            error={errors.chance11}
+                                            touched={touched.chance11}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 11"
+                                            value={values.chance11}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 34 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chance12}
+                                        </span>
+                                        
+                                        <img src="chance.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chance12"
+                                            type="text"
+                                            error={errors.chance12}
+                                            touched={touched.chance12}
+                                            placeholder="Please Enter Text"
+                                            label="Chance Card 12"
+                                            value={values.chance12}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {/* Chance Cards End */}
+
+                            {/* Chest Cards Start */}
+                            {values.step === 35 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest1}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest1"
+                                            type="text"
+                                            error={errors.chest1}
+                                            touched={touched.chest1}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 1"
+                                            value={values.chest1}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 36 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest2}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest2"
+                                            type="text"
+                                            error={errors.chest2}
+                                            touched={touched.chest2}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 2"
+                                            value={values.chest2}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 37 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest3}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest3"
+                                            type="text"
+                                            error={errors.chest3}
+                                            touched={touched.chest3}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 3"
+                                            value={values.chest3}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 38 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest4}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest4"
+                                            type="text"
+                                            error={errors.chest4}
+                                            touched={touched.chest4}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 4"
+                                            value={values.chest4}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 39 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest5}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest5"
+                                            type="text"
+                                            error={errors.chest5}
+                                            touched={touched.chest5}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 5"
+                                            value={values.chest5}
+                                        />
+                                    </div>
+                                </div>
+                            )}                  
+                            {values.step === 40 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest6}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest6"
+                                            type="text"
+                                            error={errors.chest6}
+                                            touched={touched.chest6}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 6"
+                                            value={values.chest6}
+                                        />
+                                    </div>
+                                </div>
+                            )}                         
+                            {values.step === 41 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest7}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest7"
+                                            type="text"
+                                            error={errors.chest7}
+                                            touched={touched.chest7}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 7"
+                                            value={values.chest7}
+                                        />
+                                    </div>
+                                </div>
+                            )}                           
+                            {values.step === 42 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest8}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest8"
+                                            type="text"
+                                            error={errors.chest8}
+                                            touched={touched.chest8}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 8"
+                                            value={values.chest8}
+                                        />
+                                    </div>
+                                </div>
+                            )}                           
+                            {values.step === 43 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest9}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest9"
+                                            type="text"
+                                            error={errors.chest9}
+                                            touched={touched.chest9}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 9"
+                                            value={values.chest9}
+                                        />
+                                    </div>
+                                </div>
+                            )}                            
+                            {values.step === 44 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest10}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest10"
+                                            type="text"
+                                            error={errors.chest10}
+                                            touched={touched.chest10}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 10"
+                                            value={values.chest10}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 45 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest11}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest11"
+                                            type="text"
+                                            error={errors.chest11}
+                                            touched={touched.chest11}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 11"
+                                            value={values.chest11}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {values.step === 46 && (
+                                <div className="flex flex-col items-center h-full justify-evenly gap-6 ">
+                                    <div className={`relative w-[301px] h-[202px] !uppercase text-black ${values.fontFamily2 === "Aaux Next" ? "font-aaux" : values.fontFamily2 === "Kabel" ? "font-kabel" : "font-aileron"}`}>
+                                        <span 
+                                            className="absolute top-[75px] left-4 text-xl font-bold z-10 text-center break-words leading-none overflow-hidden h-[100px] w-[210px] flex items-center justify-center "
+                                        >
+                                            {values.chest12}
+                                        </span>
+                                        
+                                        <img src="chest.png" className="w-[301px] h-[202px] object-contain" />
+                                    </div>
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <Input 
+                                            name="chest12"
+                                            type="text"
+                                            error={errors.chest12}
+                                            touched={touched.chest12}
+                                            placeholder="Please Enter Text"
+                                            label="Chest Card 12"
+                                            value={values.chest12}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                            {/* Chance Cards End */}
+
+
                             {/* Font Selection */}
                             {values.step > 4 && values.step < 22 && (
                                 <div className="flex flex-col w-full mt-2">
@@ -1276,16 +1906,32 @@ export default function GoldForm() {
 
                                 </div>
                             )}
+                            {values.step > 22 && values.step < 47 && (
+                                <div className="flex flex-col w-full mt-2">
+                                    <label htmlFor="fontFamily2">
+                                        Select Font
+                                    </label>
+                                    <select 
+                                        name="fontFamily2" 
+                                        id="fontFamily2" 
+                                        value={values.fontFamily2} 
+                                        onChange={(e) => setFieldValue("fontFamily2", e.target.value)} 
+                                        className="p-2 border border-gray-300 rounded-md"  
+                                    >
+                                        <option value="Aaux Next">Aaux Next</option>
+                                        <option value="Aileron">Aileron</option>
+                                        <option value="Kabel">Kabel</option>
+                                    </select>
 
-                            {/* Gameboard Preview */}
-                            {values.step === 22 && (
-                                <>
-                                    <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} />
-                                </>
+                                </div>
                             )}
 
+                            {/* {values.step === 47 && (
+                              <PlaceCards1 values={values} />
+                            )} */}
 
-                            {/* Gameboard End */}
+
+                            
 
                             {/* Buttons */}
                             <div className="flex gap-2 mt-4">

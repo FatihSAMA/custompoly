@@ -16,7 +16,8 @@ export default {
       },
       fontFamily : {
         "aaux" : "Aaux Next, sans-serif",
-        "aileron" : "Aileron, sans-serif"
+        "aileron" : "Aileron, sans-serif",
+        "kabel" : "Kabel, sans-serif",
       }
     },
   },

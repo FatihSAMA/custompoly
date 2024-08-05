@@ -561,30 +561,6 @@ export default function GameBoardPreview({ values, image }) {
             ctx.globalCompositeOperation = "source-over"
             ctx.drawImage(img, 0, 0, img.width, img.height)
 
-
-            // Resimler
-            // images.forEach(({ src, x, y, width, height, rotation }) => {
-            //     const img = new Image();
-            //     img.src = src;
-            //     img.onload = () => {
-            //       const aspectRatio = img.width / img.height;
-            //       let newWidth, newHeight;
-        
-            //       if (width / height > aspectRatio) {
-            //         newHeight = height;
-            //         newWidth = height * aspectRatio;
-            //       } else {
-            //         newWidth = width;
-            //         newHeight = width / aspectRatio;
-            //       }
-        
-            //       ctx.save(); // Mevcut durumunu kaydet
-            //       ctx.translate(x + newWidth / 2, y + newHeight / 2); // Resmi ortalamak için konumlandır
-            //       ctx.rotate((rotation * Math.PI) / 180); // Resmi döndür
-            //       ctx.drawImage(img, -newWidth / 2, -newHeight / 2, newWidth, newHeight); // Resmi çiz
-            //       ctx.restore(); // Durumu geri yükle
-            //     };
-            //   });
             images.forEach(({ src, x, y, width, height, rotation }) => {
                 const img = new Image();
                 img.src = src;
@@ -659,8 +635,6 @@ export default function GameBoardPreview({ values, image }) {
 
 
   return (
-    <div className="w-full">
-        <canvas ref={canvasRef} className="w-full" />
-    </div>
+    <canvas ref={canvasRef} className="w-full" />
   )
 }
