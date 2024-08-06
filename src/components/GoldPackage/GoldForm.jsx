@@ -15,7 +15,6 @@ import PlaceCards1Back from "../Cards/PlaceCards1Back"
 import PlaceCards2 from "../Cards/PlaceCards2"
 import PlaceCards2Back from "../Cards/PlaceCards2Back"
 import { RotatingLines } from "react-loader-spinner"
-import { color } from "framer-motion"
 
 
 const initialValues = {
