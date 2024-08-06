@@ -1,123 +1,46 @@
 import { useRef, useEffect, forwardRef, useImperativeHandle } from "react"
 
-const PlaceCards1 = forwardRef(({ values }, ref) => {
+const PlaceCards2Back = forwardRef(({ values }, ref) => {
     
     const texts = [
         {
-            text: values.brownText1,
+            text: values.station4Text,
             x: 545,
-            y: 483,
+            y: 1115,
         },
         {
-            text: values.brownText2,
+            text: values.station3Text,
             x: 1308,
-            y: 483,
+            y: 1115,
         },
-
         {
-            text: values.blueText1,
+            text: values.station2Text,
             x: 2071,
-            y: 483,
+            y: 1115,
         },
         {
-            text: values.blueText2,
+            text: values.station1Text,
             x: 2834,
-            y: 483,
+            y: 1115,
         },
         {
-            text: values.blueText3,
+            text: values.empty3Text,
             x: 3597,
-            y: 483,
+            y: 1115,
         },
-
         {
-            text: values.pinkText1,
+            text: values.empty2Text,
             x: 4360,
-            y: 483,
+            y: 1115,
         },
         {
-            text: values.pinkText2,
+            text: values.darkBlueText2,
             x: 5123,
-            y: 483,
-        },
-        {
-            text: values.pinkText3,
-            x: 545,
-            y: 1603,
+            y: 1115,
         },
 
-        {
-            text: values.orangeText1,
-            x: 1308,
-            y: 1603,
-        },
-        {
-            text: values.orangeText2,
-            x: 2071,
-            y: 1603,
-        },
-        {
-            text: values.orangeText3,
-            x: 2834,
-            y: 1603,
-        },
 
-        {
-            text: values.redText1,
-            x: 3597,
-            y: 1603,
-        },
-        {
-            text: values.redText2,
-            x: 4360,
-            y: 1603,
-        },
-        {
-            text: values.redText3,
-            x: 5123,
-            y: 1603,
-        },
-
-        {
-            text: values.yellowText1,
-            x: 545,
-            y: 2723,
-        },
-        {
-            text: values.yellowText2,
-            x: 1308,
-            y: 2723,
-        },
-        {
-            text: values.yellowText3,
-            x: 2071,
-            y: 2723,
-        },
-
-        {
-            text: values.greenText1,
-            x: 2834,
-            y: 2723,
-        },
-        {
-            text: values.greenText2,
-            x: 3597,
-            y: 2723,
-        },
-        {
-            text: values.greenText3,
-            x: 4360,
-            y: 2723,
-        },
-
-        {
-            text: values.darkBlueText1,
-            x: 5123,
-            y: 2723,
-        },
-
-        
-
+       
     ]
 
     const canvasRef = useRef(null)
@@ -138,7 +61,7 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
         const ctx = canvas.getContext("2d")
 
         const img = new Image()
-        img.src = "place1.jpg"
+        img.src = "place2back.jpg"
 
         img.onload = () => {
 
@@ -213,4 +136,4 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
     )
 })
 
-export default PlaceCards1
+export default PlaceCards2Back

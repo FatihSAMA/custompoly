@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, forwardRef, useImperativeHandle } from "react"
 
-export default function PlayCard({ values }) {
+const PlayCard = forwardRef(({ values }, ref) => {
 
     const texts = [
         {
@@ -131,6 +131,17 @@ export default function PlayCard({ values }) {
 
     const canvasRef = useRef(null)
 
+    useImperativeHandle(ref, () => ({
+        getCanvasImage: () => {
+            const canvas = canvasRef.current
+            if(!canvas) return null
+            
+            const dataUrl = canvas.toDataURL("image/png")
+
+            return dataUrl
+        }
+    }))
+
     useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext("2d")
@@ -208,6 +219,8 @@ export default function PlayCard({ values }) {
     };
 
     return (
-        <canvas ref={canvasRef} className="w-full" />
+        <canvas ref={canvasRef} className="w-full hidden" />
     )
-}
+})
+
+export default PlayCard

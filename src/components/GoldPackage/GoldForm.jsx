@@ -1,10 +1,21 @@
+import { useState, useRef, useEffect } from "react"
 import { Form, Formik } from "formik"
+import classNames from "classnames"
+import { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
+
+import client from "../../../client"
 import goldValidationSchema from "./Validation"
+
 import Input from "../Input"
-import { useState } from "react"
 import GameBoardPreview from "../Gameboard/GameboardPreview"
 import PlayCard from "../Cards/PlayCards"
 import PlaceCards1 from "../Cards/PlaceCards1"
+import PlaceCards1Back from "../Cards/PlaceCards1Back"
+import PlaceCards2 from "../Cards/PlaceCards2"
+import PlaceCards2Back from "../Cards/PlaceCards2Back"
+import { RotatingLines } from "react-loader-spinner"
+import { color } from "framer-motion"
 
 
 const initialValues = {
@@ -163,6 +174,18 @@ const isDarkColor = (color = "#CCE3C7") => {
 
 export default function GoldForm() {
     
+    const [status, setStatus] = useState(false)
+    
+
+    const gameboardRef = useRef(null)
+    const playCardRef = useRef(null)
+    const placeCards1Ref = useRef(null)
+    const placeCards1BackRef = useRef(null)
+    const placeCards2Ref = useRef(null)
+    const placeCards2BackRef = useRef(null)
+
+
+    
     const [dragActive, setDragActive] = useState(false)
 
     const handleDrag = (event) => {
@@ -204,15 +227,224 @@ export default function GoldForm() {
     }
 
 
+    const uploadImage = async (image) => {
+        const timestamp = Date.now()
+        const uniqueName = `${timestamp}_`
+        const uploadedImage = await client.assets.upload('image', image, { filename: uniqueName })
+        return {
+            _type: "image",
+            _key: Date.now() + "key",
+            asset: {
+                _type: "reference",
+                _ref: uploadedImage._id
+            }
+        }
+    }
+    
+    const uploadCanvas = async (dataURL) => {
+       
+        const response = await fetch(dataURL)
+        const blob = await response.blob()
+        
+        
+        const uniqueFilename = `gameboard_${Date.now()}.png`
+        
+        try {
+            const uploadedImage = await client.assets.upload('image', blob, {
+                filename: uniqueFilename,
+            })
+            
+            return {
+                _type: "image",
+                _key: Date.now() + "key",
+                asset: {
+                    _type: "reference",
+                    _ref: uploadedImage._id
+                }
+            }
+        } catch (error) {
+            console.error('Image upload failed:', error)
+            throw new Error('Image upload failed')
+        }
+    }
+    
+
+    // Submit
+    const handleSubmit = async (values, { resetForm }) => {
+
+        setStatus("loading")
+
+        try{
+
+            const gameboardImage = gameboardRef.current.getCanvasImage()
+            const uploadedGameboard = await uploadCanvas(gameboardImage)
+            
+            const gameCards = playCardRef.current.getCanvasImage()
+            const uploadedGameCards = await uploadCanvas(gameCards)
+
+            const placeCards1 = placeCards1Ref.current.getCanvasImage()
+            const uploadedPlaceCards1 = await uploadCanvas(placeCards1)
+
+            const placeCards1Back = placeCards1BackRef.current.getCanvasImage()
+            const uploadedPlaceCards1Back = await uploadCanvas(placeCards1Back)
+
+            const placeCards2 = placeCards2Ref.current.getCanvasImage()
+            const uploadedPlaceCards2 = await uploadCanvas(placeCards2)
+
+            const placeCards2Back = placeCards2BackRef.current.getCanvasImage()
+            const uploadedPlaceCards2Back = await uploadCanvas(placeCards2Back)
+
+            let uploadedImages = []
+            if(values.images.length > 0){
+                for(let img of values.images){
+                    const imgRef = await uploadImage(img)
+                    uploadedImages.push(imgRef)
+                }
+            }
+    
+            let uploadedMoneyImages = []
+            if(values.moneyImages.length > 0){
+                for(let img of values.moneyImages){
+                    const imgRef = await uploadImage(img)
+                    uploadedMoneyImages.push(imgRef)
+                }
+            }
+
+            const uploadedEmpty1Image = await uploadImage(values.empty1Image)
+            const uploadedLeftCornerImage = await uploadImage(values.leftCornerImage)
+            const uploadedEmpty2Image = await uploadImage(values.empty2Image)
+            const uploadedTopLeftImage = await uploadImage(values.topLeftImage)
+            const uploadedEmpty3Image = await uploadImage(values.empty3Image)
+            const uploadedTopRightImage = await uploadImage(values.topRightImage)
+            const uploadedEmpty4Image = await uploadImage(values.empty4Image)
+
+            const formData = {
+                email: values.email,
+                gameName: values.gameName,
+
+                images: [...uploadedImages],
+                moneyImages: [...uploadedMoneyImages],
+
+                gameboardImage: uploadedGameboard,
+
+                gameCards: uploadedGameCards,
+
+                otherCards1: uploadedPlaceCards1,
+                otherCards2: uploadedPlaceCards1Back,
+
+                otherCards3: uploadedPlaceCards2,
+                otherCards4: uploadedPlaceCards2Back,
+
+                gameboard: {
+                    startText: values.startText,
+                    startText2: values.startText2,
+                    brownText1: values.brownText1,
+                    brownText2: values.brownText2,
+                    chestText: values.chestText,
+                    empty1Text: values.empty1Text,
+                    empty1Image: uploadedEmpty1Image,
+                    station1Text: values.station1Text,
+                    blueText1: values.blueText1,
+                    blueText2: values.blueText2,
+                    blueText3: values.blueText3,
+                    chanceText: values.chanceText,
+                    leftCornerText1: values.leftCornerText1,
+                    leftCornerText2: values.leftCornerText2,
+                    leftCornerImage: uploadedLeftCornerImage,
+                    pinkText1: values.pinkText1,
+                    pinkText2: values.pinkText2,
+                    pinkText3: values.pinkText3,
+                    empty2Text: values.empty2Text,
+                    empty2Image: uploadedEmpty2Image,
+                    station2Text: values.station2Text,
+                    orangeText1: values.orangeText1,
+                    orangeText2: values.orangeText2,
+                    orangeText3: values.orangeText3,
+                    topLeftText1: values.topLeftText1,
+                    topLeftText2: values.topLeftText2,
+                    topLeftImage: uploadedTopLeftImage,
+                    redText1: values.redText1,
+                    redText2: values.redText2,
+                    redText3: values.redText3,
+                    station3Text: values.station3Text,
+                    yellowText1: values.yellowText1,
+                    yellowText2: values.yellowText2,
+                    yellowText3: values.yellowText3,
+                    empty3Text: values.empty3Text,
+                    empty3Image: uploadedEmpty3Image,
+                    topRightText1: values.topRightText1,
+                    topRightText2: values.topRightText2,
+                    topRightImage: uploadedTopRightImage,
+                    greenText1: values.greenText1,
+                    greenText2: values.greenText2,
+                    greenText3: values.greenText3,
+                    station4Text: values.station4Text,
+                    darkBlueText1: values.darkBlueText1,
+                    darkBlueText2: values.darkBlueText2,
+                    empty4Text: values.empty4Text,
+                    empty4Image: uploadedEmpty4Image,
+                },
+
+                chanceCards: {
+                    chance1: values.chance1,
+                    chance2: values.chance2,
+                    chance3: values.chance3,
+                    chance4: values.chance4,
+                    chance5: values.chance5,
+                    chance6: values.chance6,
+                    chance7: values.chance7,
+                    chance8: values.chance8,
+                    chance9: values.chance9,
+                    chance10: values.chance10,
+                    chance11: values.chance11,
+                    chance12: values.chance12,
+                },
+
+                chestCards: {
+                    chest1: values.chest1,
+                    chest2: values.chest2,
+                    chest3: values.chest3,
+                    chest4: values.chest4,
+                    chest5: values.chest5,
+                    chest6: values.chest6,
+                    chest7: values.chest7,
+                    chest8: values.chest8,
+                    chest9: values.chest9,
+                    chest10: values.chest10,
+                    chest11: values.chest11,
+                    chest12: values.chest12,
+                },
+
+                
+            }
+            
+            await client.create({
+                _type: "gold",
+                ...formData,
+            })
+
+            toast.success("Form sent succesfuly!")
+            resetForm()
+            setStatus("success")
+
+
+        }
+        catch(err){
+            console.log("Hata: ", err)
+            toast.error("An error occured! Please resend form.")
+            setStatus("fail")
+        }
+
+    }
+      
+
     return (
         <div className="flex flex-col justify-center gap-2 max-w-[600px] min-h-[600px] mb-8 mx-auto mt-12 rounded-md p-8 bg-foreground text-primary drop-shadow-box">
             <Formik
                 initialValues={initialValues}
                 validationSchema={goldValidationSchema}
                 validateOnMount={false}
-                onSubmit={(values, actions) => {
-                    console.log(values)
-                }}
+                onSubmit={handleSubmit}
             >
                 {({ values, setFieldValue, errors, touched, isValid, dirty }) => {
                     const nextStep = () => {
@@ -1298,7 +1530,7 @@ export default function GoldForm() {
                             {/* Gameboard Preview */}
                             {values.step === 22 && (
                                 <>
-                                    <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} />
+                                    <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} ref={gameboardRef} />
                                 </>
                             )}
 
@@ -1926,12 +2158,18 @@ export default function GoldForm() {
                                 </div>
                             )}
 
-                            {/* {values.step === 47 && (
-                              <PlaceCards1 values={values} />
-                            )} */}
-
-
+                            {/* Hidden Canvas */}
+                            <GameBoardPreview values={values} image={isDarkColor(values.boardColor) ? "white.png" : "black.png"} ref={gameboardRef} hidden={true} />
                             
+                            <PlayCard values={values} ref={playCardRef} />
+                            
+                            <PlaceCards1 values={values} ref={placeCards1Ref} />
+                            <PlaceCards1Back values={values} ref={placeCards1BackRef} />
+
+                            <PlaceCards2 values={values} ref={placeCards2Ref} />
+                            <PlaceCards2Back values={values} ref={placeCards2BackRef} />
+
+                            {/* Hidden Canvas End */}
 
                             {/* Buttons */}
                             <div className="flex gap-2 mt-4">
@@ -1950,11 +2188,46 @@ export default function GoldForm() {
                                         Next
                                     </button>
                                 )}
+                                {values.step === values.laststep && (
+                                    <button 
+                                        type="submit" 
+                                        className={classNames("flex-[3] flex items-center justify-center gap-2 bg-green-700 text-white rounded-md text-xl disabled:bg-opacity-25 hover:bg-green-800 group transition-all", {
+                                            "opacity-50 cursor-not-allowed animate-pulse" : status === "loading"
+                                        } )}
+                                        disabled={(!isValid || !dirty) || status === "loading"}
+                                    >
+                                        Send
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:translate-x-2 transition-all duration-500" width={24} height={24} viewBox="0 0 24 24">
+                                            <path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8z"></path>
+                                        </svg>
+                                    </button>
+                                )}
                             </div>
+                            
                         </Form>
                     )
                 }}
             </Formik>
+
+            {status === "loading" && (
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                    <RotatingLines
+                    visible={true}
+                    height="96"
+                    width="96"
+                    color="green"
+                    strokeWidth="4"
+                    animationDuration="1"
+                    ariaLabel="rotating-lines-loading"
+                    wrapperClass="bg-blue-400"
+                    />
+                </div>
+            )}
+
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
         </div>
     )
 }

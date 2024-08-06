@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useImperativeHandle, forwardRef } from "react"
 
-export default function GameBoardPreview({ values, image }) {
+const GameBoardPreview = forwardRef(({ values, image, hidden }, ref) => {
   
     const images = [
         {
@@ -542,6 +542,17 @@ export default function GameBoardPreview({ values, image }) {
   
     const canvasRef = useRef(null)
 
+    useImperativeHandle(ref, () => ({
+        getCanvasImage: () => {
+            const canvas = canvasRef.current
+            if(!canvas) return null
+            
+            const dataUrl = canvas.toDataURL("image/png")
+
+            return dataUrl
+        }
+    }))
+
     useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext("2d")
@@ -607,7 +618,7 @@ export default function GameBoardPreview({ values, image }) {
 
         }
 
-    }, [])
+    }, [values, image])
 
     const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
         const words = text.split(' ');
@@ -630,11 +641,13 @@ export default function GameBoardPreview({ values, image }) {
         for(let i = 0; i < lines.length; i++) {
           ctx.fillText(lines[i], x, y + i * lineHeight);
         }
-      };
+    };
     
 
 
   return (
-    <canvas ref={canvasRef} className="w-full" />
+    <canvas ref={canvasRef} className={`w-full ${hidden && "hidden"}`} />
   )
-}
+})
+
+export default GameBoardPreview

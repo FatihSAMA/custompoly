@@ -4,119 +4,36 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
     
     const texts = [
         {
-            text: values.brownText1,
-            x: 545,
-            y: 483,
-        },
-        {
-            text: values.brownText2,
+            text: values.empty2Text,
             x: 1308,
-            y: 483,
+            y: 810,
         },
 
         {
-            text: values.blueText1,
+            text: values.empty3Text,
             x: 2071,
-            y: 483,
+            y: 810,
         },
         {
-            text: values.blueText2,
+            text: values.station1Text,
             x: 2834,
-            y: 483,
+            y: 750,
         },
         {
-            text: values.blueText3,
+            text: values.station2Text,
             x: 3597,
-            y: 483,
+            y: 750,
         },
-
         {
-            text: values.pinkText1,
+            text: values.station3Text,
             x: 4360,
-            y: 483,
+            y: 750,
         },
         {
-            text: values.pinkText2,
+            text: values.station4Text,
             x: 5123,
-            y: 483,
+            y: 750,
         },
-        {
-            text: values.pinkText3,
-            x: 545,
-            y: 1603,
-        },
-
-        {
-            text: values.orangeText1,
-            x: 1308,
-            y: 1603,
-        },
-        {
-            text: values.orangeText2,
-            x: 2071,
-            y: 1603,
-        },
-        {
-            text: values.orangeText3,
-            x: 2834,
-            y: 1603,
-        },
-
-        {
-            text: values.redText1,
-            x: 3597,
-            y: 1603,
-        },
-        {
-            text: values.redText2,
-            x: 4360,
-            y: 1603,
-        },
-        {
-            text: values.redText3,
-            x: 5123,
-            y: 1603,
-        },
-
-        {
-            text: values.yellowText1,
-            x: 545,
-            y: 2723,
-        },
-        {
-            text: values.yellowText2,
-            x: 1308,
-            y: 2723,
-        },
-        {
-            text: values.yellowText3,
-            x: 2071,
-            y: 2723,
-        },
-
-        {
-            text: values.greenText1,
-            x: 2834,
-            y: 2723,
-        },
-        {
-            text: values.greenText2,
-            x: 3597,
-            y: 2723,
-        },
-        {
-            text: values.greenText3,
-            x: 4360,
-            y: 2723,
-        },
-
-        {
-            text: values.darkBlueText1,
-            x: 5123,
-            y: 2723,
-        },
-
-        
 
     ]
 
@@ -138,7 +55,7 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
         const ctx = canvas.getContext("2d")
 
         const img = new Image()
-        img.src = "place1.jpg"
+        img.src = "place2.jpg"
 
         img.onload = () => {
 
@@ -152,8 +69,23 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
             ctx.globalCompositeOperation = "source-over"
             ctx.drawImage(img, 0, 0, img.width, img.height)
 
+            
+            
+            // darkblue 2
+            ctx.save()
+            ctx.beginPath()
+            ctx.rect(545 - 450 / 2, 483 - 150 / 2, 450, 150)
+            ctx.clip()
+            ctx.translate(545, 483+30)
+            ctx.font = `900 50px ${values.fontFamily}`
+            ctx.textAlign = "center"
+            ctx.textBaseline = "middle"
+            ctx.fillStyle = "#fff"
+            wrapText(ctx, values.darkBlueText2.toUpperCase(), 0, 0, 450, 50, 150);
+            ctx.restore()
+
             // Yazıları ekle
-            texts.forEach(({ text, x, y, maxWidth=450, maxHeight=150 }) => {
+            texts.forEach(({ text, x, y, maxWidth=480, maxHeight=100 }) => {
                 ctx.save()
 
                 ctx.beginPath()
@@ -161,17 +93,16 @@ const PlaceCards1 = forwardRef(({ values }, ref) => {
                 ctx.clip()
 
                 // bg
-                // ctx.fillStyle = "#000"; 
+                // ctx.fillStyle = "#ddd"; 
                 // ctx.fillRect(x - maxWidth / 2, y - maxHeight / 2, maxWidth, maxHeight);
 
-                // +30 sonradan ekledim
-                ctx.translate(x, y+30)
-                ctx.font = `900 50px ${values.fontFamily}`
+                ctx.translate(x, y)
+                ctx.font = `900 45px ${values.fontFamily}`
                 ctx.textAlign = "center"
                 ctx.textBaseline = "middle"
-                ctx.fillStyle = "#fff"
+                ctx.fillStyle = "#000"
 
-                wrapText(ctx, text.toUpperCase(), 0, 0, maxWidth, 55, maxHeight);
+                wrapText(ctx, text.toUpperCase(), 0, 0, maxWidth, 60, maxHeight);
                 ctx.restore()
             })
         }
