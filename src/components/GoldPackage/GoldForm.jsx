@@ -309,13 +309,26 @@ export default function GoldForm() {
                 }
             }
 
-            const uploadedEmpty1Image = await uploadImage(values.empty1Image)
-            const uploadedLeftCornerImage = await uploadImage(values.leftCornerImage)
-            const uploadedEmpty2Image = await uploadImage(values.empty2Image)
-            const uploadedTopLeftImage = await uploadImage(values.topLeftImage)
-            const uploadedEmpty3Image = await uploadImage(values.empty3Image)
-            const uploadedTopRightImage = await uploadImage(values.topRightImage)
-            const uploadedEmpty4Image = await uploadImage(values.empty4Image)
+            let uploadedEmpty1Image = ""
+            values.empty1Image !== "" && (uploadedEmpty1Image = await uploadImage(values.empty1Image))
+            
+            let uploadedLeftCornerImage = "" 
+            values.leftCornerImage !== "" && (uploadedLeftCornerImage = await uploadImage(values.leftCornerImage))
+
+            let uploadedEmpty2Image = ""
+            values.empty2Image !== "" && (uploadedEmpty2Image = await uploadImage(values.empty2Image))
+
+            let uploadedTopLeftImage = ""
+            values.topLeftImage !== "" && (uploadedTopLeftImage = await uploadImage(values.topLeftImage))
+
+            let uploadedEmpty3Image = ""
+            values.empty3Image !== "" && (uploadedEmpty3Image = await uploadImage(values.empty3Image))
+
+            let uploadedTopRightImage = ""
+            values.topRightImage !== "" && (uploadedTopRightImage = await uploadImage(values.topRightImage))
+            
+            let uploadedEmpty4Image = ""
+            values.empty4Image !== "" && (uploadedEmpty4Image = await uploadImage(values.empty4Image))
 
             const formData = {
                 email: values.email,
@@ -341,7 +354,7 @@ export default function GoldForm() {
                     brownText2: values.brownText2,
                     chestText: values.chestText,
                     empty1Text: values.empty1Text,
-                    empty1Image: uploadedEmpty1Image,
+                    empty1Image: uploadedEmpty1Image !== "" ? uploadedEmpty1Image : null,
                     station1Text: values.station1Text,
                     blueText1: values.blueText1,
                     blueText2: values.blueText2,
@@ -349,19 +362,19 @@ export default function GoldForm() {
                     chanceText: values.chanceText,
                     leftCornerText1: values.leftCornerText1,
                     leftCornerText2: values.leftCornerText2,
-                    leftCornerImage: uploadedLeftCornerImage,
+                    leftCornerImage: uploadedLeftCornerImage !== "" ? uploadedLeftCornerImage : null,
                     pinkText1: values.pinkText1,
                     pinkText2: values.pinkText2,
                     pinkText3: values.pinkText3,
                     empty2Text: values.empty2Text,
-                    empty2Image: uploadedEmpty2Image,
+                    empty2Image: uploadedEmpty2Image !== "" ? uploadedEmpty2Image : null,
                     station2Text: values.station2Text,
                     orangeText1: values.orangeText1,
                     orangeText2: values.orangeText2,
                     orangeText3: values.orangeText3,
                     topLeftText1: values.topLeftText1,
                     topLeftText2: values.topLeftText2,
-                    topLeftImage: uploadedTopLeftImage,
+                    topLeftImage: uploadedTopLeftImage !== "" ? uploadedTopLeftImage : null,
                     redText1: values.redText1,
                     redText2: values.redText2,
                     redText3: values.redText3,
@@ -370,10 +383,10 @@ export default function GoldForm() {
                     yellowText2: values.yellowText2,
                     yellowText3: values.yellowText3,
                     empty3Text: values.empty3Text,
-                    empty3Image: uploadedEmpty3Image,
+                    empty3Image: uploadedEmpty3Image !== "" ? uploadedEmpty3Image : null,
                     topRightText1: values.topRightText1,
                     topRightText2: values.topRightText2,
-                    topRightImage: uploadedTopRightImage,
+                    topRightImage: uploadedTopRightImage !== "" ? uploadedTopRightImage : null,
                     greenText1: values.greenText1,
                     greenText2: values.greenText2,
                     greenText3: values.greenText3,
@@ -381,7 +394,7 @@ export default function GoldForm() {
                     darkBlueText1: values.darkBlueText1,
                     darkBlueText2: values.darkBlueText2,
                     empty4Text: values.empty4Text,
-                    empty4Image: uploadedEmpty4Image,
+                    empty4Image: uploadedEmpty4Image !== "" ? uploadedEmpty4Image : null,
                 },
 
                 chanceCards: {
